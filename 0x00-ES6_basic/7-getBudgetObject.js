@@ -1,3 +1,9 @@
-import getSanFranciscoDescription from './6-string-interpolation.js';
+export default function getBudgetObject(income, gdp, capita) {
+  const budget = {
+    income,
+    gdp,
+    capita,
+  };
 
-console.log(getSanFranciscoDescription());
+  return budget;
+}
