@@ -1,42 +1,38 @@
-// 1-calcul.test.js
-const assert = require("assert");
-const calculateNumber = require("./1-calcul");
+const assert = require('assert');
+const calculateNumber = require('./1-calcul');
 
-describe("calculateNumber()", function() {
-  describe("SUM", function() {
-    it("should return 3 when inputs are 1 and 2", function() {
-      const res = calculateNumber('SUM', 1, 2);
-      assert.strictEqual(res, 3);
-    });
-    it("should return 5 when inputs are 1.6 and 3.2", function() {
-      const res = calculateNumber('SUM', 1.6, 3.2);
-      assert.strictEqual(res, 5);
+describe('calculateNumber', () => {
+  describe('SUM', () => {
+    it('should return 6 when rounding 1.4 and 4.5 and summing them', () => {
+      const result = calculateNumber('SUM', 1.4, 4.5);
+      assert.strictEqual(result, 6);
     });
   });
 
-  describe("SUBTRACT", function() {
-    it("should return -1 when inputs are 1 and 2", function() {
-      const res = calculateNumber('SUBTRACT', 1, 2);
-      assert.strictEqual(res, -1);
-    });
-    it("should return 2 when inputs are 3.7 and 1.2", function() {
-      const res = calculateNumber('SUBTRACT', 3.7, 1.2);
-      assert.strictEqual(res, 2);
+  describe('SUBTRACT', () => {
+    it('should return -4 when rounding 1.4 and 4.5 and subtracting them', () => {
+      const result = calculateNumber('SUBTRACT', 1.4, 4.5);
+      assert.strictEqual(result, -4);
     });
   });
 
-  describe("DIVIDE", function() {
-    it("should return 2 when inputs are 4 and 2", function() {
-      const res = calculateNumber('DIVIDE', 4, 2);
-      assert.strictEqual(res, 2);
+  describe('DIVIDE', () => {
+    it('should return 0.2 when rounding 1.4 and 4.5 and dividing them', () => {
+      const result = calculateNumber('DIVIDE', 1.4, 4.5);
+      assert.strictEqual(result, 0.2);
     });
-    it("should return 'Error' when division by 0", function() {
-      const res = calculateNumber('DIVIDE', 4, 0.1);
-      assert.strictEqual(res, 'Error');
+
+    it('should return "Error" when trying to divide by 0', () => {
+      const result = calculateNumber('DIVIDE', 1.4, 0);
+      assert.strictEqual(result, 'Error');
     });
-    it("should return 1 when inputs are 1.4 and 1.4", function() {
-      const res = calculateNumber('DIVIDE', 1.4, 1.4);
-      assert.strictEqual(res, 1);
+  });
+
+  describe('Invalid type', () => {
+    it('should throw an error for invalid type', () => {
+      assert.throws(() => {
+        calculateNumber('INVALID', 1.4, 4.5);
+      }, /Invalid operation type/);
     });
   });
 });
